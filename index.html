@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talia - Taze Makarna & Pizza</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #0a2e1e 0%, #1a4a3a 50%, #2d5a4a 100%);
+    background-attachment: fixed;
+    color: #f5f5dc;
+    min-height: 100vh;
+    padding: 10px;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 700px;
+    margin: 0 auto;
+    background: rgba(15, 35, 25, 0.95);
+    border-radius: 25px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(212, 175, 55, 0.2);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    animation: slideUp 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header {
+    background: linear-gradient(135deg, #1a4a3a 0%, #2d5a4a 100%);
+    padding: 40px 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 700;
+    color: #d4af37;
+    text-shadow: 
+        0 0 10px rgba(212, 175, 55, 0.5),
+        0 5px 10px rgba(0,0,0,0.3);
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 2;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #f5f5dc;
+    font-weight: 300;
+    position: relative;
+    z-index: 2;
+    opacity: 0.9;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.nav-tabs {
+    display: flex;
+    background: rgba(212, 175, 55, 0.1);
+    border-bottom: 2px solid rgba(212, 175, 55, 0.2);
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.nav-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-tab {
+    flex: 1;
+    padding: 15px 20px;
+    background: none;
+    border: none;
+    color: #f5f5dc;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    white-space: nowrap;
+    min-width: 120px;
+}
+
+.nav-tab:hover {
+    background: rgba(212, 175, 55, 0.1);
+    color: #d4af37;
+}
+
+.nav-tab.active {
+    background: rgba(212, 175, 55, 0.2);
+    color: #d4af37;
+    font-weight: 600;
+}
+
+.nav-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { opacity: 0.5; }
+    to { opacity: 1; }
+}
+
+.content {
+    padding: 25px;
+    max-height: 70vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(212, 175, 55, 0.5) transparent;
+}
+
+.content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.content::-webkit-scrollbar-thumb {
+    background: rgba(212, 175, 55, 0.5);
+    border-radius: 10px;
+}
+
+.section {
+    display: none;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #d4af37;
+    text-align: center;
+    margin-bottom: 25px;
+    padding: 15px;
+    border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 60px;
+    height: 2px;
+    background: #d4af37;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+}
+
+.menu-item {
+    background: rgba(212, 175, 55, 0.05);
+    margin-bottom: 15px;
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.menu-item:hover {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: rgba(212, 175, 55, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+}
+
+.menu-item:hover::before {
+    left: 100%;
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.item-info {
+    flex: 1;
+    padding-right: 15px;
+}
+
+.item-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #f5f5dc;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.popular-badge {
+    background: linear-gradient(45deg, #ff6b35, #f7931e);
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.item-description {
+    font-size: 0.9rem;
+    color: rgba(212, 175, 55, 0.8);
+    font-style: italic;
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+.item-price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #d4af37;
+    white-space: nowrap;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.size-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.size-option {
+    background: rgba(212, 175, 55, 0.1);
+    padding: 12px 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.size-option:hover {
+    background: rgba(212, 175, 55, 0.2);
+    border-color: rgba(212, 175, 55, 0.4);
+    transform: scale(1.02);
+}
+
+.size-name {
+    font-size: 0.85rem;
+    color: #d4af37;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.size-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #f5f5dc;
+}
+
+.footer {
+    text-align: center;
+    padding: 25px;
+    background: rgba(15, 35, 25, 0.8);
+    border-top: 2px solid rgba(212, 175, 55, 0.3);
+    font-size: 0.95rem;
+    color: #d4af37;
+}
+
+.footer-main {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.update-info {
+    color: rgba(245, 245, 220, 0.7);
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    font-size: 1.1rem;
+    color: #d4af37;
+}
+
+.loader {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(212, 175, 55, 0.3);
+    border-radius: 50%;
+    border-top-color: #d4af37;
+    animation: spin 1s linear infinite;
+    margin-right: 15px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(45deg, #d4af37, #f4c842);
+    color: #1a4a3a;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    z-index: 1000;
+}
+
+.back-to-top.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.back-to-top:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+/* Mobil optimizasyon - Büyük mobil ekranlar (768px ve altı) */
+@media (max-width: 768px) {
+    body {
+        padding: 5px;
+    }
+    
+    .container {
+        border-radius: 20px;
+    }
+    
+    .logo {
+        font-size: 3rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+        letter-spacing: 2px;
+    }
+    
+    .header {
+        padding: 25px 20px;
+    }
+    
+    .content {
+        padding: 15px;
+        max-height: 65vh;
+    }
+    
+    .nav-tab {
+        font-size: 0.9rem;
+        padding: 12px 15px;
+        min-width: 100px;
+    }
+    
+    .section-title {
+        font-size: 1.7rem;
+        margin-bottom: 20px;
+        padding: 12px;
+    }
+    
+    .menu-item {
+        padding: 15px;
+        margin-bottom: 12px;
+        border-radius: 12px;
+    }
+    
+    .item-name {
+        font-size: 1.1rem;
+        margin-bottom: 6px;
+    }
+    
+    .item-description {
+        font-size: 0.85rem;
+        margin-bottom: 8px;
+        line-height: 1.3;
+    }
+    
+    .item-price {
+        font-size: 1.2rem;
+    }
+    
+    .size-options {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 12px;
+    }
+    
+    .size-option {
+        padding: 10px 12px;
+    }
+    
+    .size-name {
+        font-size: 0.8rem;
+        margin-bottom: 4px;
+    }
+    
+    .size-price {
+        font-size: 1rem;
+    }
+    
+    .back-to-top {
+        width: 45px;
+        height: 45px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 1.1rem;
+    }
+}
+
+/* Küçük mobil ekranlar (480px ve altı) */
+@media (max-width: 480px) {
+    body {
+        padding: 3px;
+    }
+    
+    .logo {
+        font-size: 2.2rem;
+        letter-spacing: 1px;
+    }
+    
+    .subtitle {
+        font-size: 0.9rem;
+        letter-spacing: 1.5px;
+    }
+    
+    .header {
+        padding: 20px 15px;
+    }
+    
+    .content {
+        padding: 12px;
+        max-height: 68vh;
+    }
+    
+    .nav-tab {
+        font-size: 0.85rem;
+        padding: 10px 12px;
+        min-width: 90px;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        padding: 10px;
+    }
+    
+    .menu-item {
+        padding: 12px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+    
+    .item-header {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 8px;
+    }
+    
+    .item-info {
+        padding-right: 0;
+        width: 100%;
+    }
+    
+    .item-name {
+        font-size: 1rem;
+        margin-bottom: 5px;
+    }
+    
+    .item-description {
+        font-size: 0.8rem;
+        margin-bottom: 6px;
+        line-height: 1.25;
+    }
+    
+    .item-price {
+        margin-top: 5px;
+        font-size: 1.1rem;
+        align-self: flex-end;
+    }
+    
+    .size-options {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin-top: 10px;
+    }
+    
+    .size-option {
+        padding: 8px 10px;
+        border-radius: 8px;
+    }
+    
+    .size-name {
+        font-size: 0.75rem;
+        margin-bottom: 3px;
+    }
+    
+    .size-price {
+        font-size: 0.95rem;
+    }
+    
+    .footer {
+        padding: 18px 12px;
+        font-size: 0.85rem;
+    }
+    
+    .footer-main {
+        font-size: 1rem;
+        margin-bottom: 6px;
+    }
+    
+    .update-info {
+        font-size: 0.8rem;
+    }
+    
+    .back-to-top {
+        width: 40px;
+        height: 40px;
+        bottom: 15px;
+        right: 15px;
+        font-size: 1rem;
+    }
+}
+
+/* Çok küçük ekranlar (360px ve altı) */
+@media (max-width: 360px) {
+    .logo {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+    }
+    
+    .content {
+        padding: 10px;
+    }
+    
+    .menu-item {
+        padding: 10px;
+        margin-bottom: 8px;
+    }
+    
+    .item-name {
+        font-size: 0.95rem;
+    }
+    
+    .item-description {
+        font-size: 0.75rem;
+    }
+    
+    .item-price {
+        font-size: 1rem;
+    }
+    
+    .nav-tab {
+        font-size: 0.8rem;
+        padding: 8px 10px;
+        min-width: 80px;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">Talia</div>
+            <div class="subtitle">Taze Makarna & Pizza</div>
+        </div>
+        
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showSection('pasta')">🍝 Makarna</button>
+            <button class="nav-tab" onclick="showSection('pizza')">🍕 Pizza</button>
+            <button class="nav-tab" onclick="showSection('drinks')">🥤 İçecekler</button>
+        </div>
+        
+        <div class="content" id="content">
+            <!-- MAKARNA SECTION -->
+            <div class="section active" id="pasta">
+                <h2 class="section-title">Fettuccine Alfredo</h2>
+                
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-info">
+                            <div class="item-name">
+                                Fettuccine Alfredo
+                            </div>
+                            <div class="item-description">Taze Makarnanın Dev Parmesan Tekeri ile sıcak buluşması</div>
+                        </div>
+                    </div>
+                    <div class="size-options">
+                        <div class="size-option">
+                            <div class="size-name">Normal 150 gr</div>
+                            <div class="size-price">125 TL</div>
+                        </div>
+                        <div class="size-option">
+                            <div class="size-name">Büyük 200 gr</div>
+                            <div class="size-price">150 TL</div>
+                        </div>
+                        <div class="size-option">
+                            <div class="size-name">XL 300 gr</div>
+                            <div class="size-price">250 TL</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h2 class="section-title">Eklemeler</h2>
+                
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-info">
+                            <div class="item-name">Napoliten Sos</div>
+                        </div>
+                        <div class="item-price">35 TL</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-info">
+                            <div class="item-name">Arabiata Sos Acı</div>
+                        </div>
+                        <div class="item-price">35 TL</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-info">
+                            <div class="item-name">Pesto Sos</div>
+                        </div>
+                        <div class="item-price">45 TL</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-info">
+                            <div class="item-name">Extra Parmesan</div>
+                        </div>
+                        <div class="item-price">45 TL</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-info">
+                            <div class="item-name">Kuru Domates & Mozzarella</div>
+                        </div>
+                        <div class="item-price">55 TL</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-info">
+                            <div class="item-name">Mantar Soğan</div>
+                        </div>
+                        <div class="item-price">60 TL</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-info">
+                            <div class="item-name">Barbekü Soslu Tavuk</div>
+                        </div>
+                        <div class="item-price">70 TL</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-info">
+                            <div class="item-name">Köri Soslu Tavuk</div>
+                        </div>
+                        <div class="item-price">70 TL</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-info">
+                            <div class="item-name">
+                                Kıymalı Bolonez
+                            </div>
+                        </div>
+                        <div class="item-price">90 TL</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-info">
+                            <div class="item-name">Füme Et</div>
+                        </div>
+                        <div class="item-price">100 TL</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-info">
+                            <div class="item-name">Mantar & Tavuk</div>
+                        </div>
+                        <div class="item-price">110 TL</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-info">
+                            <div class="item-name">Turşu Tabağı</div>
+                        </div>
+                        <div class="item-price">45 TL</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PIZZA SECTION -->
+            <div class="section" id="pizza">
+                <h2 class="section-title">Pizza</h2>
+                <div class="item-description" style="text-align: center; margin-bottom: 25px; color: #d4af37; font-size: 1.1rem; font-style: italic;">El yapımı ekşi mayalı pizza</div>
+                
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-info">
+                            <div class="item-name">
+                                Karışık (1-2 kişilik)
+                            </div>
+                            <div class="item-description">Mozzarella, sucuk, mısır, zeytin, biber, mantar, kuru domates</div>
+                        </div>
+                        <div class="item-price">325 TL</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-info">
+                            <div class="item-name">Margarita (1-2 kişilik)</div>
+                            <div class="item-description">Mozzarella, Domates, Taze Fesleğen, Acı Zeytinyağı</div>
+                        </div>
+                        <div class="item-price">275 TL</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-info">
+                            <div class="item-name">Pizza Pesto (1-2 kişilik)</div>
+                            <div class="item-description">Mozzarella, Domates Sosu, Pesto, Acı Zeytinyağı</div>
+                        </div>
+                        <div class="item-price">275 TL</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- İÇECEKLER SECTION -->
+            <div class="section" id="drinks">
+                <h2 class="section-title">İçecekler</h2>
+                
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-info">
+                            <div class="item-name">Pepsi - Yedigun 7UP</div>
+                        </div>
+                        <div class="item-price">55 TL</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-info">
+                            <div class="item-name">Lipton Ice Tea</div>
+                        </div>
+                        <div class="item-price">55 TL</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-info">
+                            <div class="item-name">Beyoğlu Gazozu Zencefilli</div>
+                        </div>
+                        <div class="item-price">55 TL</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-info">
+                            <div class="item-name">Beyoğlu Gazozu Reyhanlı</div>
+                        </div>
+                        <div class="item-price">55 TL</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-info">
+                            <div class="item-name">Limonata</div>
+                        </div>
+                        <div class="item-price">55 TL</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-info">
+                            <div class="item-name">Meyveli Soda</div>
+                        </div>
+                        <div class="item-price">35 TL</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-info">
+                            <div class="item-name">Sade Soda</div>
+                        </div>
+                        <div class="item-price">30 TL</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-info">
+                            <div class="item-name">
+                                Ayran
+                            </div>
+                        </div>
+                        <div class="item-price">45 TL</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-info">
+                            <div class="item-name">Su</div>
+                        </div>
+                        <div class="item-price">25 TL</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-info">
+                            <div class="item-name">Türk Kahvesi</div>
+                        </div>
+                        <div class="item-price">60 TL</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-info">
+                            <div class="item-name">Filtre Kahve</div>
+                        </div>
+                        <div class="item-price">60 TL</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-header">
+                        <div class="item-info">
+                            <div class="item-name">Çay</div>
+                        </div>
+                        <div class="item-price">20 TL</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-main">FİYATLARA KDV DAHİLDİR</div>
+            <div class="update-info">Fiyat Güncelleme Tarihi: 21/10/2024</div>
+        </div>
+    </div>
+
+    <button class="back-to-top" onclick="scrollToTop()" id="backToTop">
+        ↑
+    </button>
+
+    <script>
+        // Navigation functionality
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected section with animation
+            const targetSection = document.getElementById(sectionId);
+            targetSection.classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+            
+            // Scroll to top of content
+            document.getElementById('content').scrollTop = 0;
+        }
+        
+        // Back to top functionality
+        function scrollToTop() {
+            document.getElementById('content').scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Show/hide back to top button
+        document.getElementById('content').addEventListener('scroll', function() {
+            const backToTopBtn = document.getElementById('backToTop');
+            if (this.scrollTop > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+        
+        // Enhanced hover effects
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.01)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+        
+        // Size option selection effect
+        document.querySelectorAll('.size-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected class from siblings
+                this.parentNode.querySelector
+                // Remove selected class from siblings
+                const siblings = this.parentNode.querySelectorAll('.size-option');
+                siblings.forEach(s => s.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+
+        // Optional: Add selected style
+        const style = document.createElement('style');
+        style.textContent = `
+            .size-option.selected {
+                background: rgba(212, 175, 55, 0.3);
+                border-color: rgba(212, 175, 55, 0.6);
+                box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Fallback for event target in showSection (for better support)
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', function () {
+                const sectionId = this.getAttribute('onclick').match(/'(.+?)'/)[1];
+                showSectionWithElement(sectionId, this);
+            });
+        });
+
+        function showSectionWithElement(sectionId, element) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            const targetSection = document.getElementById(sectionId);
+            targetSection.classList.add('active');
+            element.classList.add('active');
+            document.getElementById('content').scrollTop = 0;
+        }
+    </script>
+</body>
+</html>
