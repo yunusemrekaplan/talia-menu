@@ -151,7 +151,7 @@ body {
 
 .content {
     padding: 25px;
-    max-height: calc(100vh - 200px);
+    max-height: 70vh;
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: rgba(212, 175, 55, 0.5) transparent;
@@ -420,9 +420,6 @@ body {
     
     .container {
         border-radius: 20px;
-        min-height: calc(100vh - 10px);
-        display: flex;
-        flex-direction: column;
     }
     
     .logo {
@@ -436,23 +433,11 @@ body {
     
     .header {
         padding: 25px 20px;
-        flex-shrink: 0;
-    }
-    
-    .nav-tabs {
-        flex-shrink: 0;
     }
     
     .content {
         padding: 15px;
-        flex: 1;
-        max-height: none;
-        overflow-y: auto;
-    }
-    
-    .footer {
-        flex-shrink: 0;
-        padding: 15px;
+        max-height: 65vh;
     }
     
     .nav-tab {
@@ -522,12 +507,6 @@ body {
         padding: 3px;
     }
     
-    .container {
-        min-height: calc(100vh - 6px);
-        display: flex;
-        flex-direction: column;
-    }
-    
     .logo {
         font-size: 2.2rem;
         letter-spacing: 1px;
@@ -540,33 +519,11 @@ body {
     
     .header {
         padding: 20px 15px;
-        flex-shrink: 0;
-    }
-    
-    .nav-tabs {
-        flex-shrink: 0;
     }
     
     .content {
         padding: 12px;
-        flex: 1;
-        max-height: none;
-        overflow-y: auto;
-    }
-    
-    .footer {
-        flex-shrink: 0;
-        padding: 12px;
-        font-size: 0.85rem;
-    }
-    
-    .footer-main {
-        font-size: 0.9rem;
-        margin-bottom: 4px;
-    }
-    
-    .update-info {
-        font-size: 0.75rem;
+        max-height: 68vh;
     }
     
     .nav-tab {
@@ -633,6 +590,20 @@ body {
     
     .size-price {
         font-size: 0.95rem;
+    }
+    
+    .footer {
+        padding: 18px 12px;
+        font-size: 0.85rem;
+    }
+    
+    .footer-main {
+        font-size: 1rem;
+        margin-bottom: 6px;
+    }
+    
+    .update-info {
+        font-size: 0.8rem;
     }
     
     .back-to-top {
